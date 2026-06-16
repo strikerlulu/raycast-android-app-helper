@@ -1,0 +1,111 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "android-app-helper",
+  "title": "Android App Helper",
+  "description": "Common Android device utilities: copy/open predefined URLs, logcat, and app listing.",
+  "icon": "extension-icon.png",
+  "author": "striker_lulu",
+  "owner": "ctz",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "copy-match-urls",
+      "title": "Copy Match Urls",
+      "description": "Copy Chrome tab URLs that include the configured match string",
+      "mode": "no-view"
+    },
+    {
+      "name": "open-match-urls",
+      "title": "Open Match Urls",
+      "description": "Open Chrome tab URLs that include the configured match string in the default browser",
+      "mode": "no-view"
+    },
+    {
+      "name": "logcat",
+      "title": "Logcat Viewer",
+      "description": "View and filter logcat output",
+      "mode": "view"
+    },
+    {
+      "name": "frida-apps",
+      "title": "Android App List",
+      "description": "List Android apps (uses Frida when available to show app names)",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "outputDirectory",
+      "type": "textfield",
+      "required": true,
+      "title": "Output Directory",
+      "description": "Directory to save extracted APKs and files",
+      "default": "~/Downloads/android-re",
+      "placeholder": "~/Downloads/android-re"
+    },
+    {
+      "name": "adbPath",
+      "type": "textfield",
+      "required": false,
+      "title": "ADB Path",
+      "description": "Path to ADB executable (leave empty to use ADB from PATH)",
+      "placeholder": "/usr/local/bin/adb"
+    },
+    {
+      "name": "fridaBinPath",
+      "type": "textfield",
+      "required": false,
+      "title": "Frida Binaries Path",
+      "description": "Path to directory containing frida and frida-ps binaries (leave empty to use from PATH)",
+      "placeholder": "/Library/Frameworks/Python.framework/Versions/3.10/bin"
+    },
+    {
+      "name": "showNotifications",
+      "type": "checkbox",
+      "required": false,
+      "title": "Show Notifications",
+      "description": "Show notifications for long-running operations",
+      "default": true,
+      "label": "Enable notifications"
+    },
+    {
+      "name": "autoExtractTimeout",
+      "type": "textfield",
+      "required": false,
+      "title": "Extraction Timeout (seconds)",
+      "description": "Timeout for automatic APK extraction operations",
+      "default": "30",
+      "placeholder": "30"
+    },
+    {
+      "name": "copyMatch",
+      "type": "textfield",
+      "required": true,
+      "title": "Copy match string",
+      "description": "Domain or substring to match in Chrome tab URLs (e.g., screenshot.googleplex.com)",
+      "default": "screenshot.googleplex.com",
+      "placeholder": "screenshot.googleplex.com"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.93.2",
+    "@raycast/utils": "^1.17.0",
+    "date-fns": "^2.30.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.11",
+    "@types/node": "20.8.10",
+    "@types/react": "18.3.3",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "prepublishOnly": "echo \"\\n\\nIt seems like you are trying to publish the Raycast extension to npm.\\n\\nIf you did intend to publish it to npm, remove the \\`prepublishOnly\\` script and rerun \\`npm publish\\` again.\\nIf you wanted to publish it to the Raycast Store instead, use \\`npm run publish\\` instead.\\n\\n\" && exit 1",
+    "publish": "npx @raycast/api@latest publish"
+  }
+}
